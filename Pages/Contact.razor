@@ -2,7 +2,43 @@
 
 <PageTitle>Contact</PageTitle>
 
-<h1>Contact</h1>
-<p>Email: <a href="mailto:isaacyaato97@gmail.com">isaacyaato97@gmail.com</a></p>
-<p>LinkedIn: <a href="https://linkedin.com/in/isaacyaato97" target="_blank">linkedin.com/in/isaacyaato97</a></p>
-<p>GitHub: <a href="https://github.com/iyyaato" target="_blank">github.com/iyyaato</a></p>
+<h1>Contact Me</h1>
+
+<form id="contact-form">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+    </div>
+
+    <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+    </div>
+
+    <button type="submit">Send</button>
+</form>
+
+<p id="form-status"></p>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  (function() {
+      emailjs.init("ZOYvREr8ONR6Xu7TA"); // Your Public Key
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      emailjs.sendForm("service_4acey1c", "template_9h9rnh9", this)
+          .then(function() {
+              document.getElementById("form-status").innerText = "✅ Message sent successfully!";
+          }, function(error) {
+              document.getElementById("form-status").innerText = "❌ Failed to send: " + error.text;
+          });
+  });
+</script>
