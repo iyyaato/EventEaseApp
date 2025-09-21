@@ -1,1 +1,2 @@
-Delete unused email.js file
+Delete email.js (no longer needed)
+
